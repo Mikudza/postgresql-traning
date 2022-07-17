@@ -20,6 +20,10 @@ Vagrant.configure("2") do |config|
         apt update
         apt install net-tools
         apt install postgresql postgresql-contrib -y
+        systemctl start postgresql@12-main
+        sudo -u postgres createuser test_user -i -s
+        sudo -u postgres createdb test_user
+        adduser --quiet --disabled-password --no-create-home --gecos test_user test_user
       SHELL
 
     end
